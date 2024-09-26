@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pix Brasil</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f8ff; /* Azul claro */
+            color: #000000; /* Preto para o texto */
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            flex-direction: column;
+        }
+        h1 {
+            color: #005b99;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .planos {
+            max-width: 500px;
+            width: 100%;
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .plano {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .plano input[type="radio"] {
+            margin-left: 10px;
+            accent-color: #28a745;
+        }
+        .premium-button {
+            display: flex;
+            align-items: center;
+            background-color: #0078d4;
+            color: #ffffff;
+            border: none;
+            padding: 12px 16px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+            text-align: center;
+            text-decoration: none;
+            margin-top: 20px;
+            transition: background-color 0.3s;
+            width: fit-content;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .premium-button:hover {
+            background-color: #005b99;
+        }
+    </style>
+</head>
+<body>
+    <h1>Planos Disponíveis</h1>
+    
+    <div class="planos">
+        <div class="plano">
+            <label for="planoA">
+                <strong>Plano A</strong><br>
+                Valor do Investimento: R$ 8.000,00<br>
+                Retorno Total: R$ 21.600,00
+            </label>
+            <input type="radio" name="plano" value="A" id="planoA">
+        </div>
+        <div class="plano">
+            <label for="planoB">
+                <strong>Plano B</strong><br>
+                Valor do Investimento: R$ 10.000,00<br>
+                Retorno Total: R$ 27.000,00
+            </label>
+            <input type="radio" name="plano" value="B" id="planoB">
+        </div>
+        <div class="plano">
+            <label for="planoC">
+                <strong>Plano C</strong><br>
+                Valor do Investimento: R$ 12.000,00<br>
+                Retorno Total: R$ 32.400,00
+            </label>
+            <input type="radio" name="plano" value="C" id="planoC">
+        </div>
+        <div class="plano">
+            <label for="planoD">
+                <strong>Plano D</strong><br>
+                Valor do Investimento: R$ 15.000,00<br>
+                Retorno Total: R$ 40.500,00
+            </label>
+            <input type="radio" name="plano" value="D" id="planoD">
+        </div>
+        <div class="plano">
+            <label for="planoE">
+                <strong>Plano E</strong><br>
+                Valor do Investimento: R$ 20.000,00<br>
+                Retorno Total: R$ 54.000,00
+            </label>
+            <input type="radio" name="plano" value="E" id="planoE">
+        </div>
+
+        <a id="whatsappButton" class="premium-button" href="#" onclick="redirectToWhatsApp(event)">
+            FALAR COM ESPECIALISTA
+        </a>
+    </div>
+
+    <script>
+        function redirectToWhatsApp(event) {
+            event.preventDefault();
+            const selectedPlan = document.querySelector('input[name="plano"]:checked');
+            const whatsappNumber = '5511948483785'; // Substitua pelo seu número do WhatsApp
+            
+            if (selectedPlan) {
+                const planDetails = {
+                    A: "Plano A\nValor do Investimento: R$ 8.000,00\nRetorno Total: R$ 21.600,00",
+                    B: "Plano B\nValor do Investimento: R$ 10.000,00\nRetorno Total: R$ 27.000,00",
+                    C: "Plano C\nValor do Investimento: R$ 12.000,00\nRetorno Total: R$ 32.400,00",
+                    D: "Plano D\nValor do Investimento: R$ 15.000,00\nRetorno Total: R$ 40.500,00",
+                    E: "Plano E\nValor do Investimento: R$ 20.000,00\nRetorno Total: R$ 54.000,00"
+                };
+                
+                const message = `Olá, gostaria de mais informações sobre o ${planDetails[selectedPlan.value]}.`;
+                const url = `https://api.whatsapp.com/send?phone=${whatsappNumber}&text=${encodeURIComponent(message)}`;
+                
+                window.open(url, '_blank');
+            } else {
+                alert("Por favor, selecione um plano antes de continuar.");
+            }
+        }
+    </script>
+</body>
+</html>
